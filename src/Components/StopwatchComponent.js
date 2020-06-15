@@ -2,8 +2,6 @@ import React from 'react';
 
 
 function Stopwatch(props) {
-  
-
   return (
     <div className="main-section">
         <h1>StopWatch</h1>
@@ -13,10 +11,8 @@ function Stopwatch(props) {
     <span> {(props.time.hours<10)?"0"+props.time.hours:props.time.hours} </span>&nbsp;&nbsp;
     <span>{(props.time.minutes<10)?"0"+props.time.minutes:props.time.minutes}</span>&nbsp;&nbsp;
     <span>{(props.time.seconds<10)?"0"+props.time.seconds:props.time.seconds}</span>&nbsp;&nbsp;
-    <span>{(props.time.milliseconds<10)?"0"+props.time.milliseconds:props.time.milliseconds}</span> &nbsp;&nbsp;
-    
-    </div>
-    
+    <span>{(props.time.milliseconds<10)?"0"+props.time.milliseconds:props.time.milliseconds}</span> &nbsp;&nbsp;  
+    </div>   
    <div >
     {(props.status === 0)?
         <div>
@@ -42,7 +38,7 @@ function Stopwatch(props) {
         </div> : ""
       }
     </div>
-            </div>
+    </div>
         </div>
 
 </div>
