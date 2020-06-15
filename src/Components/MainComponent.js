@@ -10,23 +10,19 @@ function Main()
   const [status, setStatus] = useState(0);
   const [list,setList] = useState(initiallist);
   const [record,setRecord] = useState({id:0});
-  // Not started = 0
-  // started = 1
-  // stopped = 2
-
   useEffect(()=>
   {
-    axios.get('http://localhost:8000/api/stopwatch')
+    connect();
+
+  },[]);
+
+  const connect = ()=>
+{
+  axios.get('http://localhost:8000/api/stopwatch')
   .then(function (response) {
     var data = response.data.data;
-    
      setList(data);
-    //  parsed(list);
-    
-    
-    
-    
-    
+  
   })
   .catch(function (error) {
    
@@ -35,12 +31,11 @@ function Main()
   .then(function () {
     
   });
-
-  },[]);
+}
 
   const start = () => {
     if(status !== 1)
-    {// setList(list.concat(time));
+    {
     run();
     
     setStatus(1);
@@ -96,33 +91,25 @@ function Main()
   {
       if(time)
       {
-      // changer();
-      setList(list.concat(
-          {
-              "date": Date.now(),
-              "time": time
-          }
-      ));
       axios.post("http://localhost:8000/api/stopwatch", {
         time: time,
         date: Date.now()
       })
       .then(function (response) {
         console.log("ajax"+response);
+        connect();
       })
       .catch(function (error) {
         console.log(error);
       });     
       console.log(time);
       }
-  }
-  
-
-   
+       
+  }  
         return(
             <div>
                 <Stopwatch time={time} start={start} stop={stop} reset={reset} resume={resume} save={save} status={status}/>
-                {(list.length >= 1)?<Log list={list}/>:<Log />}
+                {(list.length >= 1)?<Log list={list} connect={connect}/>:<Log />}
                 
             </div>
         );

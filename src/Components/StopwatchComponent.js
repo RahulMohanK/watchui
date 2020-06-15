@@ -6,11 +6,9 @@ function Stopwatch(props) {
 
   return (
     <div className="main-section">
+        <h1>StopWatch</h1>
         <div className="clock-holder">
             <div className = "stopwatch">
-
-
-  
     <div>
     <span> {(props.time.hours<10)?"0"+props.time.hours:props.time.hours} </span>&nbsp;&nbsp;
     <span>{(props.time.minutes<10)?"0"+props.time.minutes:props.time.minutes}</span>&nbsp;&nbsp;
